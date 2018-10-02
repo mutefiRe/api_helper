@@ -133,13 +133,13 @@ module APIHelper::Filterable
 
           when 'like'
             resource = resource
-                       .where("#{db_column_name} LIKE ?",
-                              func[:param])
+                       .where("lower(#{db_column_name}) LIKE ?",
+                              func[:param].downcase)
 
           when 'contains'
             resource = resource
-                       .where("#{db_column_name} LIKE ?",
-                              "%#{func[:param]}%")
+                       .where("lower(#{db_column_name}) LIKE ?",
+                              "%#{func[:param].downcase}%")
 
           when 'null'
             resource = resource.where(field => nil)
