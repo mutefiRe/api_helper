@@ -59,8 +59,8 @@ describe APIHelper::Filterable do
       end
     end
 
-    it "filters out resource with the \"greater_then()\" function" do
-      get '/resources.json?filter[integer]=greater_then(3)'
+    it "filters out resource with the \"greater_than()\" function" do
+      get '/resources.json?filter[integer]=greater_than(3)'
       json = JSON.parse(last_response.body)
 
       expect(json).not_to be_blank
@@ -69,8 +69,8 @@ describe APIHelper::Filterable do
       end
     end
 
-    it "filters out resource with the \"less_then()\" function" do
-      get '/resources.json?filter[integer]=less_then(3)'
+    it "filters out resource with the \"less_than()\" function" do
+      get '/resources.json?filter[integer]=less_than(3)'
       json = JSON.parse(last_response.body)
 
       expect(json).not_to be_blank
@@ -79,8 +79,8 @@ describe APIHelper::Filterable do
       end
     end
 
-    it "filters out resource with the \"greater_then_or_equal()\" function" do
-      get '/resources.json?filter[integer]=greater_then_or_equal(3)'
+    it "filters out resource with the \"greater_than_or_equal()\" function" do
+      get '/resources.json?filter[integer]=greater_than_or_equal(3)'
       json = JSON.parse(last_response.body)
 
       expect(json).not_to be_blank
@@ -89,8 +89,8 @@ describe APIHelper::Filterable do
       end
     end
 
-    it "filters out resource with the \"less_then_or_equal()\" function" do
-      get '/resources.json?filter[integer]=less_then_or_equal(3)'
+    it "filters out resource with the \"less_than_or_equal()\" function" do
+      get '/resources.json?filter[integer]=less_than_or_equal(3)'
       json = JSON.parse(last_response.body)
 
       expect(json).not_to be_blank

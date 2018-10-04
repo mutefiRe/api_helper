@@ -22,13 +22,13 @@ require 'active_support/core_ext/object/blank'
 #
 #   GET /products?filter[color]=red,blue,yellow
 #
-# A few functions: +not+, +greater_then+, +less_then+, +greater_then_or_equal+,
-# +less_then_or_equal+, +between+, +like+, +contains+, +null+ and +blank+ can
+# A few functions: +not+, +greater_than+, +less_than+, +greater_than_or_equal+,
+# +less_than_or_equal+, +between+, +like+, +contains+, +null+ and +blank+ can
 # be used to filter the data, for example:
 #
 #   GET /products?filter[color]=not(red)
-#   GET /products?filter[price]=greater_then(1000)
-#   GET /products?filter[price]=less_then_or_equal(2000)
+#   GET /products?filter[price]=greater_than(1000)
+#   GET /products?filter[price]=less_than_or_equal(2000)
 #   GET /products?filter[price]=between(1000,2000)
 #   GET /products?filter[name]=like(%lovely%)
 #   GET /products?filter[name]=contains(%lovely%)
@@ -49,7 +49,7 @@ require 'active_support/core_ext/object/blank'
 #     helpers APIHelper::Filterable
 #   end
 #
-# then use the +filter+ method in the controller like this:
+# than use the +filter+ method in the controller like this:
 #
 #   @products = filter(Post, filterable_fields: [:name, :price, :color])
 #
@@ -105,22 +105,22 @@ module APIHelper::Filterable
             values.map!(&:to_bool) if field_type == :boolean
             resource = resource.where.not(field => values)
 
-          when 'greater_then'
+          when 'greater_than'
             resource = resource
                        .where("#{db_column_name} > ?",
                               func[:param])
 
-          when 'less_then'
+          when 'less_than'
             resource = resource
                        .where("#{db_column_name} < ?",
                               func[:param])
 
-          when 'greater_then_or_equal'
+          when 'greater_than_or_equal'
             resource = resource
                        .where("#{db_column_name} >= ?",
                               func[:param])
 
-          when 'less_then_or_equal'
+          when 'less_than_or_equal'
             resource = resource
                        .where("#{db_column_name} <= ?",
                               func[:param])
